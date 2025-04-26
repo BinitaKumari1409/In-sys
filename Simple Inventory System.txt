@@ -1,0 +1,50 @@
+DROP TABLE IF EXISTS Products;
+DROP TABLE IF EXISTS Suppliers;
+DROP TABLE IF EXISTS Orders;
+
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(100),
+    SupplierID INT,
+    QuantityInStock INT,
+    ReorderLevel INT
+);
+
+CREATE TABLE Suppliers (
+    SupplierID INT PRIMARY KEY,
+    SupplierName VARCHAR(100),
+    ContactName VARCHAR(100),
+    Phone VARCHAR(20)
+);
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    ProductID INT,
+    QuantityOrdered INT,
+    OrderDate DATE
+);
+
+INSERT INTO Products (ProductID, ProductName, SupplierID, QuantityInStock, ReorderLevel)
+VALUES
+(1, 'Notebook', 1, 50, 20),
+(2, 'Pen', 2, 150, 50),
+(3, 'Pencil', 1, 30, 20),
+(4, 'Book', 2, 40, 70);
+INSERT INTO Suppliers (SupplierID, SupplierName, ContactName, Phone)
+VALUES
+(1, 'Office Supplies Co.', 'Binita Kumari', '123-456-7890'),
+(2, 'Stationery World', 'Ranjan Kumar', '987-654-3210');
+
+INSERT INTO Orders (OrderID, ProductID, QuantityOrdered, OrderDate)
+VALUES
+(1, 1, 20, '2025-04-01'),
+(2, 2, 50, '2025-04-02'),
+(3, 3, 10, '2025-04-03'),
+(4, 4, 13, '2025-04-04');
+UPDATE Products
+SET QuantityInStock = 20
+WHERE ProductID = 3;
+SELECT ProductName, QuantityInStock, ReorderLevel
+FROM Products
+WHERE QuantityInStock <= ReorderLevel;
+
